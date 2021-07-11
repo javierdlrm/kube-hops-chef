@@ -161,6 +161,10 @@ attribute "kube-hops/docker_max_gpus_allocation",
           :description =>  "Maximum number of GPUs that can be allocated for Docker containers",
           :type => 'string'
 
+attribute "kube-hops/serving_node_labels",
+          :description =>  "Comma-separated list of labels assigned to the nodes for model serving. Each label is composed of a key value pair separated by a semicolon.",
+          :type => 'string'
+
 attribute "kube-hops/kfserving/enabled",
           :description =>  "Default true. Set to 'false' to disable kfserving",
           :type => 'string'
