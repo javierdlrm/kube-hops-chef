@@ -72,6 +72,10 @@ default['kube-hops']['docker_img_version']                 = node['install']['ve
 default['kube-hops']['docker_img_tar_url']                 = node['download_url'] + "/kube/docker-images/#{node['kube-hops']['docker_img_version']}/docker-images.tar"
 default['kube-hops']['docker_img_reg_url']                 = ""
 
+# Serving
+
+default['kube-hops']['serving_node_labels']                = ""
+
 #
 # KF Serving
 #
