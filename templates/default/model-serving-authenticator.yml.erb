@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-serving-authenticator
+  namespace: hops-system
+  labels:
+    app: model-serving-authenticator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model-serving-authenticator
+  template:
+    metadata:
+      labels:
+        app: model-serving-authenticator
+    spec:
+      containers:
+        - name: server
+          image: "<%= node['kube-hops']['docker_img_reg_url'] %>/<%= node['kube-hops']['model-serving-authenticator']['image'] %>"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8443
+              name: auth-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-serving-authenticator
+  namespace: hops-system
+spec:
+  selector:
+    app: model-serving-authenticator
+  ports:
+    - port: 443
+      targetPort: auth-api

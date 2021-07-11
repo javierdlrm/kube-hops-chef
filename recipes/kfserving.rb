@@ -234,3 +234,24 @@ kube_hops_kubectl 'apply-model-serving-webhook' do
   group node['kube-hops']['group']
   url "#{node['kube-hops']['model-serving-webhook']['base_dir']}/model-serving-webhook.yaml"
 end
+
+# Model Serving Authenticator
+
+directory "#{node['kube-hops']['model-serving-authenticator']['base_dir']}" do
+  owner node['kube-hops']['user']
+  group node['kube-hops']['group']
+  mode '0700'
+  action :create
+end
+
+template "#{node['kube-hops']['model-serving-authenticator']['base_dir']}/model-serving-authenticator.yaml.template" do
+  source "model-serving-authenticator.yml.erb"
+  owner node['kube-hops']['user']
+  group node['kube-hops']['group']
+end
+
+kube_hops_kubectl 'apply-model-serving-authenticator' do
+  user node['kube-hops']['user']
+  group node['kube-hops']['group']
+  url "#{node['kube-hops']['model-serving-authenticator']['base_dir']}/model-serving-authenticator.yaml"
+end

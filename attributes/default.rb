@@ -114,6 +114,11 @@ default['kube-hops']['model-serving-webhook']['base_dir']  = node['kube-hops']['
 default['kube-hops']['model-serving-webhook']['image']     = "model-serving-webhook:#{node['kube-hops']['docker_img_version']}"
 default['kube-hops']['storage-initializer']['image']       = "storage-initializer:#{node['kube-hops']['docker_img_version']}"
 
+# Model serving authenticator
+
+default['kube-hops']['model-serving-authenticator']['base_dir']  = node['kube-hops']['hops-system']['base_dir'] + "/model-serving-authenticator"
+default['kube-hops']['model-serving-authenticator']['image']     = "model-serving-authenticator:#{node['kube-hops']['docker_img_version']}"
+
 # Inference logger
 
 default['kube-hops']['inference-logger']['image']             = "inference-logger:#{node['kube-hops']['docker_img_version']}"
